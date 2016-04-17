@@ -1,0 +1,5 @@
+var_hosts: local
+var_remote_user: vagrant
+var_become: yes
+var_connection: ssh
+var_gather_facts: yes

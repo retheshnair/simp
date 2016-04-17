@@ -1,0 +1,6 @@
+var_hosts: local
+var_remote_user: vagrant
+var_become: yes
+var_connection: local
+var_gather_facts: yes
+var_device_name: /dev/sda1
