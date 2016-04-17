@@ -1,0 +1,8 @@
+--- #PLAYBOOK FOR OS UPDATE USING APT
+- hosts: "{{ var_hosts }}"
+  user: "{{ var_remote_user }}"
+  become: "{{ var_become }}"
+  connection: "{{ var_connection }}"
+  gather_facts: "{{ var_gather_facts }}"
+  roles:
+    - ubuntu_os_upgrade

@@ -16,4 +16,4 @@
        instance_id: "{{ instance_id }}"
        device_name: "{{ var_device_name }}"
        description: snapshot of "{{ instance_id }}"
-       wait: no
+       wait: yes

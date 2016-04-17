@@ -1,0 +1,14 @@
+---
+galaxy_info:
+  author: Rethesh Nair 
+  description: Updates APT with apt -s upgrade pre and post upgrade. Reboot will be done only when the needed
+  company: 
+  license: license (GPLv2, CC-BY, etc)
+  min_ansible_version: 1.5.4
+  platforms:
+  - name: Ubuntu
+    versions:
+    - 15.04
+  categories:
+  - web
+dependencies: []

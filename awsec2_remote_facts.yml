@@ -17,5 +17,7 @@
          instance-state-name: running
          "tag:Name": "{{ Name }}"
       register: facts_find
-   -  debug: msg="{{ facts_find.instances[0].id }}"
-   -  debug: msg="{{ facts_find.instances[0].private_dns_name }}"
+   -  name: Printing the Instance ID
+      debug: msg="Instance_ID is {{ facts_find.instances[0].id }}"
+   -  name: Printing the Private DNS Details
+      debug: msg="Private DNS is {{ facts_find.instances[0].private_dns_name }}"

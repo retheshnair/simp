@@ -1,4 +1,4 @@
---- #EC2 De-register Instance from ELB
+--- #EC2 Creating New Instance
 - hosts: "{{ var_hosts }}"
   remote_user: "{{ var_remote_user }}"
   become: "{{ var_become }}"
@@ -8,12 +8,18 @@
    - files/vars_local.yml
    - files/awscreds.yml
   tasks:
-   -  name: De-register Instance from ELB
-      ec2_elb:
+   -  name: Creating the Instance
+      ec2:
         aws_access_key: "{{ aws_id }}"
         aws_secret_key: "{{ aws_key }}"
         region: "{{ aws_region }}"
-        ec2_elbs: "{{ my_elb_name }}"
-        instance_id: "{{ instance_id }}"
+        key_name: mysydenykey
+        instance_type: t2.micro
+        image: ami-6c14310f
         wait: yes
-        state: absent
+        count: 1
+        vpc_subnet_id: subnet-bfd8bdda
+        assign_public_ip: yes
+        instance_tags:
+           Name: "{{ Name }}"
+        state: present

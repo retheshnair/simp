@@ -1,0 +1,5 @@
+var_hosts: ec2
+var_remote_user: ubuntu
+var_become: yes
+var_connection: ssh
+var_gather_facts: yes

@@ -15,4 +15,5 @@
         region: "{{ aws_region }}"
         ec2_elbs: "{{ my_elb_name }}"
         instance_id: "{{ instance_id }}"
+        wait: yes
         state: present
