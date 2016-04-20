@@ -1,0 +1,38 @@
+--- #EC2 Patching
+- hosts: "{{ var_hosts }}"
+  remote_user: "{{ var_remote_user }}"
+  become: "{{ var_become }}"
+  connection: "{{ var_connection }}"
+  gather_facts: "{{ var_gather_facts }}"
+  vars_files:
+   - files/vars_local.yml
+   - files/awscreds.yml
+  pre_tasks:
+   -  name: De-register Instance from ELB
+      ec2_elb:
+        aws_access_key: "{{ aws_id }}"
+        aws_secret_key: "{{ aws_key }}"
+        region: "{{ aws_region }}"
+        instance_id: "{{ instance_id }}"
+        wait: yes
+        state: absent
+   -  name: Taking the snapshot of the an instance
+      ec2_snapshot:
+        aws_access_key: "{{ aws_id }}"
+        aws_secret_key: "{{ aws_key }}"
+        region: "{{ aws_region }}"
+        instance_id: "{{ instance_id }}"
+        device_name: "{{ var_device_name }}"
+        description: snapshot of "{{ instance_id }}"
+        wait: yes
+  post_tasks:
+   -  name: Register Instance from ELB
+      ec2_elb:
+        aws_access_key: "{{ aws_id }}"
+        aws_secret_key: "{{ aws_key }}"
+        region: "{{ aws_region }}"
+        instance_id: "{{ instance_id }}"
+        wait: yes
+        ec2_elbs: "{{ item }}"
+        state: present
+      with_items: "{{ ec2_elbs }}"

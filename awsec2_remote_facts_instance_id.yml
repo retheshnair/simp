@@ -1,4 +1,4 @@
---- #EC2 Remote facts
+--- #EC2 Remote facts using instance id
 - hosts: "{{ var_hosts }}"
   remote_user: "{{ var_remote_user }}"
   become: "{{ var_become }}"
@@ -8,16 +8,14 @@
    - files/vars_local.yml
    - files/awscreds.yml
   tasks:
-   -  name: EC2 Remote facts using Name
+   -  name: Remote facts using instance id
       ec2_remote_facts:
         aws_access_key: "{{ aws_id }}"
         aws_secret_key: "{{ aws_key }}"
         region: "{{ aws_region }}"
         filters:
          instance-state-name: running
-         "tag:Name": "{{ Name }}"
+         instance-id: "{{ instance_id }}"
       register: facts_find
-   -  name: Printing the Instance ID
-      debug: msg="Instance_ID is {{ facts_find.instances[0].id }}"
    -  name: Printing the Private DNS Details
       debug: msg="Private DNS is {{ facts_find.instances[0].private_dns_name }}"
