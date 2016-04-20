@@ -7,7 +7,9 @@
 files/awscreds.yml
 
 aws_id: XXXXXXXXXXXXXXX
+
 aws_key: XXXXXXXXXXXXX
+
 aws_region: XXXXXXXXXXXXX
 
 Steps to Install ansible 2.0 on centos
