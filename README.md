@@ -1,6 +1,6 @@
-## Ansible Plybook for AWS 
+# Ansible Plybook for AWS 
 
-#Make sure the files/awscreds.yml file is present with below information and ansible 2.0 is installed 
+#Make sure the files/awscreds.yml file is present with below information
 
 
 
@@ -12,25 +12,26 @@ aws_key: XXXXXXXXXXXXX
 
 aws_region: XXXXXXXXXXXXX
 
-Steps to Install ansible 2.0 on centos
+#Steps to Install ansible 2.0 on centos
 
-# Install ansible 1.X
+Install ansible 1.X
 
 
 yum install ansible
 
 
-
-# Remove ansible 1.X but will keep the dependent packages for ansible 2.X
+Remove ansible 1.X but will keep the dependent packages for ansible 2.X
 
 yum remove ansible 
 
 
-# create a tmp directory in your home directory
+create a tmp directory in your home directory
+
+mkdir ~/tmp
 
 cd tmp
 
-# git clone https://github.com/ansible/ansible --recursive 
+git clone https://github.com/ansible/ansible --recursive 
 
 cd ansible
 
@@ -38,18 +39,22 @@ make
 
 sudo make install 
 
+
 more details on https://github.com/ansible/ansible
 
 
 
-Steps to Install ansible 2.0 on ubuntu
+#Steps to Install ansible 2.0 on ubuntu
 
 
-# Setup ubuntu ppa for ansible 2.X
+Setup ubuntu ppa for ansible 2.X
+
 
 https://launchpad.net/~ansible/+archive/ubuntu/ansible
 
-# Install ansible 2.X
+
+Install ansible 2.X
+
 
 sudo apt-get update
 
