@@ -58,20 +58,35 @@ sudo apt-get install ansible
 
 # Example
 
-INSTANCE_NAME=testservers
-ansible-playbook -e Name=$INSTANCE_NAME awsec2_create.yml
-ansible-playbook -e Name=$INSTANCE_NAME awsec2_remote_facts.yml
-INSTANCE_ID=`ansible-playbook -e Name=$INSTANCE_NAME awsec2_remote_facts.yml | awk '/Instance_ID/ { print $NF}' | sed s/\"//g`
-IP=`ansible-playbook -e Name=$INSTANCE_NAME awsec2_remote_facts.yml | awk '/Private DNS/ { print $NF}' | sed s/\"//g|tail -1`
-ELB=ELB-TEST [ instan
-echo [host] > inventory
-echo $IP >> inventory
-ansible-playbook -e "instance_id=$INSTANCE_ID my_elb_name=$ELB"  awsec2_register_elb.yml
-ansible-playbook -e "instance_id=$INSTANCE_ID my_elb_name=$ELB"  awsec2_dregister_elb.yml
-ansible-playbook -e instance_id=$INSTANCE_ID awsec2_snapshot.yml
-ansible-playbook -i inventory -e var_hosts=host  ubuntu_os_upgrade.yml
-ansible-playbook -e "instance_id=$INSTANCE_ID my_elb_name=$ELB"  awsec2_register_elb.yml
-ansible-playbook -e instance_id=$INSTANCE_ID awsec2_terminate.yml
-ansible-playbook -e instance_id=i-7b454da4 awsec2_patching.yml
-ansible-playbook -e instance_id=$INSTANCE_ID awsec2_remote_facts_instance_id.yml
 
+INSTANCE_NAME=testservers
+
+ansible-playbook -e Name=$INSTANCE_NAME awsec2_create.yml
+
+ansible-playbook -e Name=$INSTANCE_NAME awsec2_remote_facts.yml
+
+INSTANCE_ID=`ansible-playbook -e Name=$INSTANCE_NAME awsec2_remote_facts.yml | awk '/Instance_ID/ { print $NF}' | sed s/\"//g`
+
+IP=`ansible-playbook -e Name=$INSTANCE_NAME awsec2_remote_facts.yml | awk '/Private DNS/ { print $NF}' | sed s/\"//g|tail -1`
+
+ELB=ELB-TEST [ ELB to which the instance is attached ]
+
+echo [host] > inventory
+
+echo $IP >> inventory
+
+ansible-playbook -e "instance_id=$INSTANCE_ID my_elb_name=$ELB"  awsec2_register_elb.yml
+
+ansible-playbook -e "instance_id=$INSTANCE_ID my_elb_name=$ELB"  awsec2_dregister_elb.yml
+
+ansible-playbook -e instance_id=$INSTANCE_ID awsec2_snapshot.yml
+
+ansible-playbook -i inventory -e var_hosts=host  ubuntu_os_upgrade.yml
+
+ansible-playbook -e "instance_id=$INSTANCE_ID my_elb_name=$ELB"  awsec2_register_elb.yml
+
+ansible-playbook -e instance_id=$INSTANCE_ID awsec2_terminate.yml
+
+ansible-playbook -e instance_id=$INSTANCE_ID awsec2_patching.yml
+
+ansible-playbook -e instance_id=$INSTANCE_ID awsec2_remote_facts_instance_id.yml
