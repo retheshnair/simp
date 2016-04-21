@@ -6,12 +6,9 @@
   gather_facts: "{{ var_gather_facts }}"
   vars_files:
    - files/vars_local.yml
-   - files/awscreds.yml
   tasks:
    -  name: Creating the Instance
       ec2:
-        aws_access_key: "{{ aws_id }}"
-        aws_secret_key: "{{ aws_key }}"
         region: "{{ aws_region }}"
         key_name: mysydenykey
         instance_type: t2.micro

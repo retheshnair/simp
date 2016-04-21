@@ -6,16 +6,12 @@
   gather_facts: "{{ var_gather_facts }}"
   vars_files:
    - files/vars_local.yml
-   - files/awscreds.yml
   tasks:
    -  name: Remote facts using instance id
       ec2_remote_facts:
-        aws_access_key: "{{ aws_id }}"
-        aws_secret_key: "{{ aws_key }}"
         region: "{{ aws_region }}"
         filters:
-         instance-state-name: running
          instance-id: "{{ instance_id }}"
       register: facts_find
-   -  name: Printing the Private DNS Details
-      debug: msg="Private DNS is {{ facts_find.instances[0].private_dns_name }}"
+   -  name: Printing Private IP address
+      debug: msg="{{ facts_find.instances[0].private_ip_address }}" 

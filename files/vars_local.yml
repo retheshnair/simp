@@ -4,3 +4,4 @@ var_become: yes
 var_connection: local
 var_gather_facts: yes
 var_device_name: /dev/sda1
+aws_region: ap-southeast-2
