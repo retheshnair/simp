@@ -1,12 +1,4 @@
---- #PLAYBOOK FOR OS UPDATE USING APT
-   - hosts: "{{ var_hosts_remote }}"
-     user: "{{ var_remote_user }}"
-     become: "{{ var_become }}"
-     connection: "{{ var_connection }}"
-     gather_facts: "{{ var_gather_facts }}"
-     vars_files:
-     - files/vars_remote.yml
-  tasks:
+   tasks:
      - name: Checking for if the Server OS is Debian Based Distributions
        fail: msg="Server OS is not Debian Based Distributions or Package Manager is not apt"
        when: (ansible_os_family != "Debian" and ansible_pkg_mgr != "apt")

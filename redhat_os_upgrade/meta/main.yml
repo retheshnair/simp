@@ -1,0 +1,14 @@
+---
+galaxy_info:
+  author: Rethesh Nair 
+  description: Updates YUM with yum check-update pre and post upgrade. Reboot will be done only when the Kernel is upgraded
+  company: 
+  license: license (GPLv2, CC-BY, etc)
+  min_ansible_version: 1.5.4
+  platforms:
+  - name: EL
+    versions:
+    - 6
+  categories:
+  - Redhat
+dependencies: []

@@ -1,4 +1,4 @@
 [local]
-127.0.0.1
-[ec2]
-172.31.0.130
+localhost
+[i-a3e38021]
+ec2-52-62-242-187.ap-southeast-2.compute.amazonaws.com

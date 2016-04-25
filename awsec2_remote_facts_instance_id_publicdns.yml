@@ -14,4 +14,4 @@
          instance-id: "{{ instance_id }}"
       register: facts_find
    -  name: Printing the Private DNS Details
-      debug: msg="Private DNS is {{ facts_find.instances[0].private_dns_name }}"
+      debug: msg="Public DNS is {{ facts_find.instances[0].public_dns_name }}"

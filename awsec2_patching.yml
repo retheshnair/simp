@@ -20,7 +20,6 @@
         device_name: "{{ var_device_name }}"
         description: snapshot of "{{ instance_id }}"
         wait: yes
-   -  include: ubuntu_os_upgrade_test.yml
   post_tasks:
    -  name: Register Instance from ELB
       ec2_elb:
