@@ -3,7 +3,7 @@
     fail: msg="Server OS is not RedHat Based Distributions or Package Manager is not yum"
     when: (ansible_os_family != "RedHat" and ansible_pkg_mgr != "yum")
   - name: Running yum update to patch the system
-    yum: name=* state=latest update_cache=yes
+    yum: name=* state=latest update_cache=yes exclude="httpd* telnet*"
     async: 7200
     poll: 15
   - name: Determine Reboot is needed or not 

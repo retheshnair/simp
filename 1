@@ -1,4 +1,4 @@
---- #PLAYBOOK FOR HOLD PACKAGE USING APT
+--- #PLAYBOOK FOR UNHOLD PACKAGE USING APT
 - hosts: "{{ var_hosts }}"
   user: "{{ var_remote_user }}"
   become: "{{ var_become }}"
@@ -7,9 +7,9 @@
   vars_files:
          - files/vars_remote_ubuntu.yml
   tasks:
-  - name: Hold package on Ubuntu Based System
+  - name: Remove package on Ubuntu Based System
     when: ansible_os_family == "Debian"
-    shell: apt-mark hold {{ item }}
+    shell: apt-mark unhold name={{ item }}
     async: 40
     poll: 10
     with_items:
