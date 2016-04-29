@@ -1,0 +1,16 @@
+--- #PLAYBOOK FOR REMOVE PACKAGE USING YUM
+- hosts: "{{ var_hosts }}"
+  user: "{{ var_remote_user }}"
+  become: "{{ var_become }}"
+  connection: "{{ var_connection }}"
+  gather_facts: "{{ var_gather_facts }}"
+  vars_files:
+         - files/vars_remote.yml
+  tasks:
+  - name: Remove package on Redhat Based System
+    when: ansible_os_family == "RedHat"
+    yum: name={{ item }} state=absent
+    async: 40
+    poll: 10
+    with_items:
+    - httpd

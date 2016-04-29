@@ -10,13 +10,13 @@
    -  name: Creating the Instance
       ec2:
         region: "{{ aws_region }}"
-        key_name: mysydenykey
-        instance_type: t2.micro
-        image: ami-6c14310f
-        wait: yes
-        count: 1
-        vpc_subnet_id: subnet-bfd8bdda
-        assign_public_ip: yes
+        key_name: "{{ var_ssh_key }}" 
+        instance_type: "{{ var_instance_type }}"
+        image: "{{ var_image }}"
+        wait: "{{ var_wait }}"
+        count: "{{ var_count }}"
+        vpc_subnet_id: "{{ var_vpc_subnet_id }}"
+        assign_public_ip: "{{ var_assign_public_ip }}"
         instance_tags:
            Name: "{{ Name }}"
         state: present

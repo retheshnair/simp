@@ -1,0 +1,16 @@
+--- #PLAYBOOK FOR PACKAGE UPDATE USING APT
+- hosts: "{{ var_hosts }}"
+  user: "{{ var_remote_user }}"
+  become: "{{ var_become }}"
+  connection: "{{ var_connection }}"
+  gather_facts: "{{ var_gather_facts }}"
+  vars_files:
+         - files/vars_remote.yml
+  tasks:
+  - name: update package on Ubuntu Based System
+    when: ansible_os_family == "Debian"
+    apt: name={{ item }} state=latest update_cache=yes dpkg_options='force-confold,force-confdef'
+    async: 40
+    poll: 10
+    with_items:
+    - apache2
