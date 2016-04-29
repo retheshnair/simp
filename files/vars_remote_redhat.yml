@@ -1,0 +1,6 @@
+var_hosts_remote: ec2
+var_remote_user: ubuntu
+var_become: yes
+var_connection: ssh
+var_gather_facts: yes
+var_package: [httpd,telnet]
