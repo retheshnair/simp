@@ -1,5 +1,4 @@
 files/awscreds.yml
 inventory
-*.retry
 local
 output

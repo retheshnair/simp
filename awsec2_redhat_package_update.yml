@@ -5,7 +5,7 @@
   connection: "{{ var_connection }}"
   gather_facts: "{{ var_gather_facts }}"
   vars_files:
-         - files/vars_remote.yml
+         - files/vars_remote_redhat.yml
   tasks:
   - name: Update package on Redhat Based System
     when: ansible_os_family == "RedHat"
